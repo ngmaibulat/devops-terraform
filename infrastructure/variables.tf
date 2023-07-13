@@ -6,3 +6,11 @@ variable "aws_region" {
   type        = string
 
 }
+
+variable "key_name" {
+
+  description = "Name of the SSH key to use"
+  default     = "ssh-key"
+  type        = string
+
+}

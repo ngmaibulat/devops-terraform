@@ -5,11 +5,21 @@ provider "aws" {
 
 data "aws_caller_identity" "current" {}
 
+module "key" {
+  source    = "./modules/key"
+  algorithm = "RSA"
+  bits      = 4096
+  name      = var.key_name
+}
+
 
 module "vpc" {
   source          = "./modules/vpc"
   vpc_cidr_block  = "10.0.0.0/16"
   vpc_cidr_subnet = "10.0.0.0/24"
+  key_name        = var.key_name
+
+  depends_on = [module.key]
 }
 
 # module "storage" {

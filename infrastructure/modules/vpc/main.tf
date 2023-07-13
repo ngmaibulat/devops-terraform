@@ -72,12 +72,14 @@ resource "aws_security_group" "allow_ssh" {
 
 resource "aws_instance" "srv-01" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.nano"
-  key_name      = "sshkey"
+  instance_type = var.vmtype
+  key_name      = var.key_name
   # security_groups = [aws_security_group.allow_ssh.id]
   subnet_id              = aws_subnet.corpsubnet.id
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
   depends_on             = [aws_security_group.allow_ssh]
+
+  user_data = file("setup.sh")
 
   tags = {
     Name = "srv-01"
