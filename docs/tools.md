@@ -1,0 +1,4 @@
+-   bat
+-   jq
+-   dot
+-   graphviz

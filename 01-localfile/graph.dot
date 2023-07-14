@@ -1,0 +1,27 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] local_file.demo (expand)" [label = "local_file.demo", shape = "box"]
+		"[root] local_file.list (expand)" [label = "local_file.list", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/local\"]" [label = "provider[\"registry.terraform.io/hashicorp/local\"]", shape = "diamond"]
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"]" [label = "provider[\"registry.terraform.io/hashicorp/random\"]", shape = "diamond"]
+		"[root] random_integer.random (expand)" [label = "random_integer.random", shape = "box"]
+		"[root] var.content" [label = "var.content", shape = "note"]
+		"[root] var.filename" [label = "var.filename", shape = "note"]
+		"[root] local_file.demo (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/local\"]"
+		"[root] local_file.demo (expand)" -> "[root] var.content"
+		"[root] local_file.demo (expand)" -> "[root] var.filename"
+		"[root] local_file.list (expand)" -> "[root] local_file.demo (expand)"
+		"[root] output.md5 (expand)" -> "[root] local_file.demo (expand)"
+		"[root] output.random (expand)" -> "[root] random_integer.random (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/local\"] (close)" -> "[root] local_file.list (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)" -> "[root] random_integer.random (expand)"
+		"[root] random_integer.random (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"]"
+		"[root] root" -> "[root] output.md5 (expand)"
+		"[root] root" -> "[root] output.random (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/local\"] (close)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/random\"] (close)"
+	}
+}
+
