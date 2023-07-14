@@ -7,7 +7,6 @@ resource "aws_instance" "example" {
   instance_type = "t2.micro"
 
   key_name = "your_key_name"
-  ...
 
   provisioner "file" {
     source      = "conf/myapp.conf"
