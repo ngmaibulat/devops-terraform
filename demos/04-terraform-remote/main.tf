@@ -1,21 +1,14 @@
-
-locals {
-  listfile    = "list.txt"
-  permissions = "0600"
-}
-
-
 resource "local_file" "demo" {
   content         = var.content
-  filename        = "files/${terraform.workspace}-${var.filename}"
-  file_permission = local.permissions
+  filename        = var.filename
+  file_permission = "0600"
 }
 
 
 resource "local_file" "list" {
   content         = "md5: ${local_file.demo.content_md5}\n"
-  filename        = "files/${local.listfile}"
-  file_permission = local.permissions
+  filename        = "list.txt"
+  file_permission = "0600"
 
   depends_on = [local_file.demo]
 

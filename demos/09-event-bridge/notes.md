@@ -1,0 +1,4 @@
+-   provision event brdige
+-   provision lambda
+-   make some events
+-   check lambda logs
