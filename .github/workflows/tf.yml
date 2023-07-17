@@ -33,7 +33,7 @@ jobs:
       
       - name: Terraform Account
         run: |
-          cd cd demos/with-s3-backend/03-IAM-Account
+          cd demos/with-s3-backend/03-IAM-Account
           terraform init
           terraform apply --auto-approve
           terraform output
