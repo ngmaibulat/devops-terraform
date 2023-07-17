@@ -21,12 +21,19 @@ jobs:
 
       - uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform
+      - name: Terraform S3
         run: |
-          cd demos/11-use-s3-backend
+          cd demos/with-s3-backend/02-S3/
           terraform version
           terraform init
           terraform plan
           terraform validate
+          terraform apply --auto-approve
+          terraform output
+      
+      - name: Terraform Account
+        run: |
+          cd demos/with-s3-backend/03-Account/
+          terraform init
           terraform apply --auto-approve
           terraform output
